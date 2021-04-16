@@ -1,2 +1,2 @@
 # mybots
-the world where my xenobots will live in
+this is the world where my xenobots will live in
