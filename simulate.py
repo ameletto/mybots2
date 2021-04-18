@@ -33,8 +33,11 @@ for i in range (1000):
     controlMode = p.POSITION_CONTROL,
     targetPosition = random.uniform(-math.pi/2.0, math.pi/2.0),
     maxForce = 40)
-    
-    time.sleep(1/60)
+
+    time.sleep(1/100)
 p.disconnect()
 numpy.save('data/backLegSensorValues.npy', backLegSensorValues)
 numpy.save('data/frontLegSensorValues.npy', frontLegSensorValues)
+
+targetAngles=numpy.linspace(-1, 1, 1000)
+print(targetAngles)
