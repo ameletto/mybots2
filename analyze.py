@@ -6,8 +6,8 @@ import matplotlib.pyplot
 # matplotlib.pyplot.plot(backLegSensorValues, label='Back Leg', linewidth=2)
 # matplotlib.pyplot.plot(frontLegSensorValues, label='Front Leg')
 
-targetAngles=numpy.load('data/targetAngles.npy')
-matplotlib.pyplot.plot(numpy.pi/4*numpy.sin(targetAngles), label='Motor Values')
+motorValues=numpy.load('data/motorValues.npy')
+matplotlib.pyplot.plot(motorValues, label='Motor Values')
 
 matplotlib.pyplot.legend()
 matplotlib.pyplot.show()
