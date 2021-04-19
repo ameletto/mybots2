@@ -6,7 +6,7 @@ import numpy
 import random
 
 amplitude=numpy.pi/4
-frequency=1
+frequency=10
 phaseOffset=0
 
 physicsClient = p.connect(p.GUI)
