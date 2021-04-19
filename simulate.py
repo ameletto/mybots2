@@ -7,7 +7,7 @@ import random
 
 amplitudeBackLeg=numpy.pi/4
 frequencyBackLeg=10
-phaseOffsetBackLeg=0
+phaseOffsetBackLeg=numpy.pi
 
 amplitudeFrontLeg=numpy.pi/4
 frequencyFrontLeg=10
@@ -27,7 +27,8 @@ targetAngles=numpy.linspace(-numpy.pi , numpy.pi, 1000)
 motorValuesBack=amplitudeBackLeg * numpy.sin(frequencyBackLeg * targetAngles + phaseOffsetBackLeg)
 motorValuesFront=amplitudeFrontLeg * numpy.sin(frequencyFrontLeg * targetAngles + phaseOffsetFrontLeg)
 numpy.save('data/targetAngles.npy', targetAngles)
-# numpy.save('data/motorValues.npy', motorValues)
+numpy.save('data/motorValuesBack.npy', motorValuesBack)
+numpy.save('data/motorValuesFront.npy', motorValuesFront)
 
 
 for i in range (1000):
