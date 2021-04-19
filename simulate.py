@@ -3,15 +3,7 @@ import time
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy
-import random
-
-amplitudeBackLeg=numpy.pi/4
-frequencyBackLeg=10
-phaseOffsetBackLeg=numpy.pi/4
-
-amplitudeFrontLeg=numpy.pi/4
-frequencyFrontLeg=10
-phaseOffsetFrontLeg=0
+import constants as c
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -24,8 +16,8 @@ backLegSensorValues = numpy.zeros(1000)
 frontLegSensorValues = numpy.zeros(1000)
 
 targetAngles=numpy.linspace(-numpy.pi , numpy.pi, 1000)
-motorValuesBack=amplitudeBackLeg * numpy.sin(frequencyBackLeg * targetAngles + phaseOffsetBackLeg)
-motorValuesFront=amplitudeFrontLeg * numpy.sin(frequencyFrontLeg * targetAngles + phaseOffsetFrontLeg)
+motorValuesBack=c.amplitudeBackLeg * numpy.sin(c.frequencyBackLeg * targetAngles + c.phaseOffsetBackLeg)
+motorValuesFront=c.amplitudeFrontLeg * numpy.sin(c.frequencyFrontLeg * targetAngles + c.phaseOffsetFrontLeg)
 numpy.save('data/targetAngles.npy', targetAngles)
 numpy.save('data/motorValuesBack.npy', motorValuesBack)
 numpy.save('data/motorValuesFront.npy', motorValuesFront)
