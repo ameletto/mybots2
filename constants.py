@@ -2,7 +2,7 @@ import numpy
 
 amplitudeBackLeg=numpy.pi/4
 frequencyBackLeg=10
-phaseOffsetBackLeg=numpy.pi
+phaseOffsetBackLeg=numpy.pi/4
 
 amplitudeFrontLeg=numpy.pi/4
 frequencyFrontLeg=10
