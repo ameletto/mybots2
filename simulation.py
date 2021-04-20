@@ -6,6 +6,8 @@ import pyrosim.pyrosim as pyrosim
 import numpy
 import constants as c
 
+import robot
+
 from world import WORLD
 from robot import ROBOT
 
@@ -18,18 +20,17 @@ class SIMULATION:
         self.robot = ROBOT()
 
     def Run(self):
-        targetAngles=numpy.linspace(-numpy.pi , numpy.pi, 1000)
-        motorValuesBack=c.amplitudeBackLeg * numpy.sin(c.frequencyBackLeg * targetAngles + c.phaseOffsetBackLeg)
-        motorValuesFront=c.amplitudeFrontLeg * numpy.sin(c.frequencyFrontLeg * targetAngles + c.phaseOffsetFrontLeg)
+        # targetAngles=numpy.linspace(-numpy.pi , numpy.pi, 1000)
+        # motorValuesBack=c.amplitudeBackLeg * numpy.sin(c.frequencyBackLeg * targetAngles + c.phaseOffsetBackLeg)
+        # motorValuesFront=c.amplitudeFrontLeg * numpy.sin(c.frequencyFrontLeg * targetAngles + c.phaseOffsetFrontLeg)
 
-        numpy.save('data/targetAngles.npy', targetAngles)
-        numpy.save('data/motorValuesBack.npy', motorValuesBack)
-        numpy.save('data/motorValuesFront.npy', motorValuesFront)
+        # numpy.save('data/targetAngles.npy', targetAngles)
+        # numpy.save('data/motorValuesBack.npy', motorValuesBack)
+        # numpy.save('data/motorValuesFront.npy', motorValuesFront)
 
-        for i in range (1000):
+        for t in range (1000):
             p.stepSimulation()
-            # backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-            # frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
+            self.robot.Sense(t)
 
             # pyrosim.Set_Motor_For_Joint(
             # bodyIndex = robot,

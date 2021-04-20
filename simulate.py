@@ -1,4 +1,5 @@
 from simulation import SIMULATION
+from robot import ROBOT
 
 # import pybullet as p
 # import time
@@ -9,3 +10,4 @@ from simulation import SIMULATION
 
 simulation = SIMULATION()
 simulation.Run()
+
