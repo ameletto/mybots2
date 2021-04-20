@@ -50,7 +50,9 @@ class SIMULATION:
             # maxForce = 40)
 
             time.sleep(1/500) 
-    
+
+    def __del__(self):
         p.disconnect()
-        numpy.save('data/backLegSensorValues.npy', backLegSensorValues)
-        numpy.save('data/frontLegSensorValues.npy', frontLegSensorValues)
+
+        # numpy.save('data/backLegSensorValues.npy', backLegSensorValues)
+        # numpy.save('data/frontLegSensorValues.npy', frontLegSensorValues)
