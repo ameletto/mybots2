@@ -18,9 +18,6 @@ class SIMULATION:
         self.robot = ROBOT()
 
     def Run(self):
-        backLegSensorValues = numpy.zeros(1000)
-        frontLegSensorValues = numpy.zeros(1000)
-
         targetAngles=numpy.linspace(-numpy.pi , numpy.pi, 1000)
         motorValuesBack=c.amplitudeBackLeg * numpy.sin(c.frequencyBackLeg * targetAngles + c.phaseOffsetBackLeg)
         motorValuesFront=c.amplitudeFrontLeg * numpy.sin(c.frequencyFrontLeg * targetAngles + c.phaseOffsetFrontLeg)
@@ -30,7 +27,6 @@ class SIMULATION:
         numpy.save('data/motorValuesFront.npy', motorValuesFront)
 
         for i in range (1000):
-            print(i)
             p.stepSimulation()
             # backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
             # frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
@@ -49,7 +45,7 @@ class SIMULATION:
             # targetPosition = motorValuesFront[i],
             # maxForce = 40)
 
-            time.sleep(1/500) 
+            time.sleep(1/1000) 
 
     def __del__(self):
         p.disconnect()
