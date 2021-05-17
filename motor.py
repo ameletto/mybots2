@@ -1,28 +1,31 @@
+from numpy.lib.shape_base import take_along_axis
+import constants as c
 import numpy
 import pyrosim.pyrosim as pyrosim
 import pybullet as p
-import constants as c
 
 class MOTOR:
     def __init__(self, jointName):
-        self.jointName=jointName
-        self.robot = p.loadURDF("body.urdf")
+        self.jointName = jointName
+        self.Prepare_To_Act()
 
-    def Set_Value(self):
+    def Prepare_To_Act(self):
         self.amplitude = c.amplitudeBackLeg
         self.frequency = c.frequencyBackLeg
         self.offset = c.phaseOffsetBackLeg
-        targetAngles=numpy.linspace(-numpy.pi , numpy.pi, 1000)
-        self.motorValues=self.amplitude * numpy.sin(self.frequency * targetAngles + self.offset)
 
+        self.motorValuesBack = self.amplitude * numpy.sin(self.frequency * numpy.linspace(-numpy.pi , numpy.pi, 1000) + self.offset)
+        self.motorValuesFront = self.amplitude * numpy.sin(self.frequency * numpy.linspace(-numpy.pi , numpy.pi, 1000) + self.offset)
+        print(self.motorValuesBack)
+
+    def Set_Value(self):
         pyrosim.Set_Motor_For_Joint(
-        bodyIndex = self.robot,
+        bodyIndex = p.loadURDF("body.urdf"),
         jointName = self.jointName,
         controlMode = p.POSITION_CONTROL,
-        targetPosition =  self.motorValues,
+        targetPosition = self.motorValuesBack,
         maxForce = 40)
 
     # def Save_Values(self):
-        # numpy.save('data/targetAngles.npy', targetAngles)
         # numpy.save('data/motorValuesBack.npy', motorValuesBack)
         # numpy.save('data/motorValuesFront.npy', motorValuesFront)
