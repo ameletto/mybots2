@@ -1,11 +1,14 @@
 import pyrosim.pyrosim as pyrosim
 
-def Create_World():
+length=1
+width=1
+height=1
+
+def Generate_Body():
     pyrosim.Start_SDF("world.sdf")
     pyrosim.Send_Cube(name="Box", pos=[-3,3,0.5] , size=[length,width,height])
     pyrosim.End()
 
-def Create_Robot():
     pyrosim.Start_URDF("body.urdf")
     pyrosim.Send_Cube(name="BackLeg", pos=[-0.5,0,-0.5] , size=[length,width,height])
     pyrosim.Send_Cube(name="Torso", pos=[1.5,0,1.5] , size=[length,width,height])
@@ -16,26 +19,14 @@ def Create_Robot():
     type = "revolute", position = "2 0 1")
     pyrosim.End()
 
-length=1
-width=1
-height=1
+def Generate_Brain():
+    # pyrosim.Start_SDF("world.sdf")
+    # pyrosim.End()
 
-Create_World()
-Create_Robot()
+    pyrosim.Start_NeuralNetwork("brain.nndf")
+    pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "Torso")
+    pyrosim.End()
 
-# for i in range (6):
-#     y=y+1
-#     x=1
-#     for j in range (6):
-#         length=1
-#         width=1
-#         height=1
-#         z=0.5
-#         x=x+1
-#         for k in range (10):
-#             pyrosim.Send_Cube(name="Box", pos=[x,y,z] , size=[length,width,height])
-#             length=length*0.9
-#             width=width*0.9
-#             height=height*0.9
-#             z=z+height
+Generate_Body()
+Generate_Brain()
 
