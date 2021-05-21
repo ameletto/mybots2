@@ -8,7 +8,7 @@ class ROBOT:
         self.robot = p.loadURDF("body.urdf")
         pyrosim.Prepare_To_Simulate("body.urdf")
         self.Prepare_To_Sense()
-        self.Prepare_To_Act()
+        self.Prepare_To_Act(self.robot)
 
     def Prepare_To_Sense(self):
         self.sensors = {}
@@ -19,11 +19,11 @@ class ROBOT:
         for i in self.sensors:
             self.sensors[i].Get_Value(t)
 
-    def Prepare_To_Act(self):
+    def Prepare_To_Act(self, robot):
         self.motors = {}
         for jointName in pyrosim.jointNamesToIndices:
-            self.motors[jointName] = MOTOR(jointName)
+            self.motors[jointName] = MOTOR(jointName, robot)
 
-    def Act(self):
+    def Act(self, t):
         for i in self.motors:
-            self.motors[i].Set_Value()
+            self.motors[i].Set_Value(t)

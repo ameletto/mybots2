@@ -17,8 +17,8 @@ class SIMULATION:
         for t in range (1000):
             p.stepSimulation()
             self.robot.Sense(t)
-            self.robot.Act()
-            time.sleep(1/1000)
+            self.robot.Act(t)
+            time.sleep(1/10000)
 
     def __del__(self):
         p.disconnect()
