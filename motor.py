@@ -14,7 +14,10 @@ class MOTOR:
         self.amplitude = c.amplitudeBackLeg
         self.frequency = c.frequencyBackLeg
         self.offset = c.phaseOffsetBackLeg
-        self.motorValues = self.amplitude * numpy.sin(self.frequency * numpy.linspace(-numpy.pi , numpy.pi, 1000) + self.offset)
+        if self.jointName == "Torso_FrontLeg":
+            self.motorValues = self.amplitude * numpy.sin(self.frequency/2 * numpy.linspace(-numpy.pi , numpy.pi, 1000) + self.offset)
+        else:
+            self.motorValues = self.amplitude * numpy.sin(self.frequency * numpy.linspace(-numpy.pi , numpy.pi, 1000) + self.offset)
 
     def Set_Value(self, t):
         pyrosim.Set_Motor_For_Joint(
@@ -24,6 +27,5 @@ class MOTOR:
         targetPosition = self.motorValues[t],
         maxForce = 40)
 
-    # def Save_Values(self):
-        # numpy.save('data/motorValuesBack.npy', motorValuesBack)
-        # numpy.save('data/motorValuesFront.npy', motorValuesFront)
+    def Save_Values(self):
+        numpy.save('data/motorValues.npy', self.motorValues)
