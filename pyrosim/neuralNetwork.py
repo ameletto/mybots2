@@ -28,10 +28,13 @@ class NEURAL_NETWORK:
 
         print("")
 
+    # connecting neurons to sensors/motors through synapses
     def Update(self):
         for neuronName in self.neurons:
             if self.neurons[neuronName].Is_Sensor_Neuron():
                 self.neurons[neuronName].Update_Sensor_Neuron()
+            else:
+                self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron()
 
 # ---------------- Private methods --------------------------------------
 
