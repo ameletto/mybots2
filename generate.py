@@ -29,6 +29,7 @@ def Generate_Brain():
     # synapses don't have IDs because they are the last type of components will be generating; nothing else will have to refer to them
     # 0 is the presynaptic neuron, 3 is the postsynaptic neuron
     pyrosim.Send_Synapse( sourceNeuronName = 0 , targetNeuronName = 3 , weight = 1.0 )
+    pyrosim.Send_Synapse( sourceNeuronName = 1 , targetNeuronName = 3 , weight = 1.0 )
     pyrosim.End()
 
 Generate_Body()
