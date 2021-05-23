@@ -29,12 +29,14 @@ class NEURAL_NETWORK:
         print("")
 
     # connecting neurons to sensors/motors through synapses
+    # note that values for sensor neurons come from sensors; values for hidden and motor neurons come from other neurons
     def Update(self):
         for neuronName in self.neurons:
             if self.neurons[neuronName].Is_Sensor_Neuron():
                 self.neurons[neuronName].Update_Sensor_Neuron()
             else:
-                self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron()
+                self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron(self.neurons, self.synapses)
+        exit()
 
     def Get_Neuron_Names(self):
         return self.neurons.keys()

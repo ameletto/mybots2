@@ -27,6 +27,7 @@ def Generate_Brain():
     pyrosim.Send_Motor_Neuron( name = 3 , jointName = "Torso_BackLeg")
     pyrosim.Send_Motor_Neuron( name = 4 , jointName = "Torso_FrontLeg")
     # synapses don't have IDs because they are the last type of components will be generating; nothing else will have to refer to them
+    # 0 is the presynaptic neuron, 3 is the postsynaptic neuron
     pyrosim.Send_Synapse( sourceNeuronName = 0 , targetNeuronName = 3 , weight = 1.0 )
     pyrosim.End()
 
